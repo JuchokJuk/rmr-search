@@ -6,6 +6,11 @@ if (! process.env.NODE_ENV){
   dotenv.config()
 }
 
+console.log(
+  process.env.POSTGRES_USER,process.env.POSTGRES_PASSWORD,
+  process.env.DB_HOST,process.env.DB_PORT, process.env.POSTGRES_DB
+);
+
 const PORT = process.env.PORT || 8080;
 
 const app = express();
