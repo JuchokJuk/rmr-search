@@ -9,5 +9,8 @@ searchStatisticsRouter.get("/getRequests", requestController.getRequests.bind(re
 // for tests
 // searchStatisticsRouter.delete("/deleteRequests", requestController.deleteRequests.bind(requestController));
 // searchStatisticsRouter.delete("/deleteLastIssuedId", requestController.deleteLastIssuedId.bind(requestController));
+// db init
+
+searchStatisticsRouter.post("/createTables", requestController.createTables.bind(requestController));
 
 export default searchStatisticsRouter;

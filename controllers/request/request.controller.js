@@ -87,5 +87,30 @@ class RequestController {
   //     res.json({ error: e.message });
   //   }
   // }
+
+  // db init
+
+  async createTables(req, res) {
+    try {
+
+      await pool.query(`
+        CREATE TABLE public.last_issued_id (
+          id integer NOT NULL
+        );
+      `);
+
+      await pool.query(`
+        CREATE TABLE public.requests (
+          id integer NOT NULL,
+          request text NOT NULL,
+          request_time timestamp not null default CURRENT_TIMESTAMP
+        );
+      `);
+
+      res.json({ message: "ok" });
+    } catch (e) {
+      res.json({ error: e.message });
+    }
+  }
 }
 export default new RequestController();
