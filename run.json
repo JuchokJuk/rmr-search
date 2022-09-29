@@ -1,0 +1,21 @@
+{
+  "apps": [
+      {
+          "script": "index.js",
+          "args": "--experimental-modules --es-module-specifier-resolution=node",
+          "instances": "1",
+          "exec_mode": "cluster",
+          "watch": ["./**/*.js"],
+          "name": "search-statistics",
+          "ignore_watch": ["node_modules"],
+          "max_restarts": 20,
+          "min_uptime": "4000",
+          "restart_delay": 500,
+          "autorestart": true,
+          "log_date_format"	: "YYYY-MM-DD HH:mm:ss",
+          "error_file"	: "/dev/null",
+          "out_file"	: "/dev/null",
+          "merge_logs"	: true
+      }
+  ]
+}

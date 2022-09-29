@@ -1,0 +1,22 @@
+{
+  "name": "search-statistics",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --experimental-modules --es-module-specifier-resolution=node index.js",
+    "startPM": "pm2 start --no-daemon run.json",
+    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "dotenv": "^16.0.2"
+  }
+}
