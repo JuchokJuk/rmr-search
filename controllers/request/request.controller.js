@@ -24,11 +24,16 @@ class RequestController {
 
   async sendRequest(req, res) {
     try {
-      await pool.query("INSERT INTO requests (id, request) VALUES ($1, $2)", [
-        req.body.id,
-        req.body.request,
-      ]);
-      res.json({ message: "ok" });
+      const request = req.body.request.trim()
+      if(request.length > 0){
+        await pool.query("INSERT INTO requests (id, request) VALUES ($1, $2)", [
+          req.body.id,
+          req.body.request,
+        ]);
+        res.json({ message: "ok" });
+      }else{
+        res.json({ error: "you can not write empty string" });
+      }
     } catch (e) {
       res.json({ error: e.message });
     }
@@ -90,27 +95,27 @@ class RequestController {
 
   // db init
 
-  async createTables(req, res) {
-    try {
+  // async createTables(req, res) {
+  //   try {
 
-      await pool.query(`
-        CREATE TABLE public.last_issued_id (
-          id integer NOT NULL
-        );
-      `);
+  //     await pool.query(`
+  //       CREATE TABLE public.last_issued_id (
+  //         id integer NOT NULL
+  //       );
+  //     `);
 
-      await pool.query(`
-        CREATE TABLE public.requests (
-          id integer NOT NULL,
-          request text NOT NULL,
-          request_time timestamp not null default CURRENT_TIMESTAMP
-        );
-      `);
+  //     await pool.query(`
+  //       CREATE TABLE public.requests (
+  //         id integer NOT NULL,
+  //         request text NOT NULL,
+  //         request_time timestamp not null default CURRENT_TIMESTAMP
+  //       );
+  //     `);
 
-      res.json({ message: "ok" });
-    } catch (e) {
-      res.json({ error: e.message });
-    }
-  }
+  //     res.json({ message: "ok" });
+  //   } catch (e) {
+  //     res.json({ error: e.message });
+  //   }
+  // }
 }
 export default new RequestController();
