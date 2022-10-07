@@ -3,6 +3,7 @@ function removeSubstrings(originalStrings) {
   strings.forEach((element, index) => {
     strings[index] = { value: element, duplicate: false };
   });
+
   for (let i = 0; i < strings.length; i++) {
     for (let j = 0; j < strings.length; j++) {
       if (
@@ -13,12 +14,14 @@ function removeSubstrings(originalStrings) {
       }
     }
   }
+
   let fillteresStrings = [];
   for (let i = 0; i < strings.length; i++) {
     if (!strings[i].duplicate) {
       fillteresStrings.push(strings[i].value);
     }
   }
-  return fillteresStrings;
+
+  return [...new Set(fillteresStrings)];
 }
 export default removeSubstrings;

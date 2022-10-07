@@ -25,13 +25,13 @@ class RequestController {
   async sendRequest(req, res) {
     try {
       const request = req.body.request.trim()
-      if(request.length > 0){
+      if (request.length > 0) {
         await pool.query("INSERT INTO requests (id, request) VALUES ($1, $2)", [
           req.body.id,
           req.body.request,
         ]);
         res.json({ message: "ok" });
-      }else{
+      } else {
         res.json({ error: "you can not write empty string" });
       }
     } catch (e) {
@@ -63,11 +63,24 @@ class RequestController {
           groupRequests.push(row.request);
         });
 
-        let fillteredGroupRequests = removeSubstrings(groupRequests);
-        fillteredRequests = [...fillteredRequests, ...fillteredGroupRequests];
+        let fillteredGroupRequests = { requests: removeSubstrings(groupRequests), id: id };
+        fillteredRequests.push(fillteredGroupRequests);
       }
 
       res.json(fillteredRequests);
+    } catch (e) {
+      res.json({ error: e.message });
+    }
+  }
+
+  async getSequence(req, res) {
+    try {
+      const id = req.params.id;
+      const sequence = await pool.query(
+        "SELECT request, request_time FROM requests WHERE id = $1",
+        [id]
+      );
+      res.json(sequence.rows);
     } catch (e) {
       res.json({ error: e.message });
     }
