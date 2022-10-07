@@ -16,9 +16,9 @@ function removeSubstrings(originalStrings) {
   }
 
   let fillteresStrings = [];
-  for (let i = 0; i < strings.length; i++) {
-    if (!strings[i].duplicate) {
-      fillteresStrings.push(strings[i].value);
+  for (const string of strings) {
+    if (!string.duplicate) {
+      fillteresStrings.push(string.value);
     }
   }
 

@@ -6,6 +6,7 @@ const searchStatisticsRouter = new Router();
 searchStatisticsRouter.get("/getNewId", requestController.getNewId.bind(requestController));
 searchStatisticsRouter.post("/sendRequest", requestController.sendRequest.bind(requestController));
 searchStatisticsRouter.get("/getRequests", requestController.getRequests.bind(requestController));
+searchStatisticsRouter.get("/getSequnce/:id", requestController.getSequence.bind(requestController));
 // for tests
 searchStatisticsRouter.delete("/deleteRequests", requestController.deleteRequests.bind(requestController));
 searchStatisticsRouter.delete("/deleteLastIssuedId", requestController.deleteLastIssuedId.bind(requestController));

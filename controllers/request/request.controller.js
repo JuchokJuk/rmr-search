@@ -51,8 +51,7 @@ class RequestController {
         idList.push(row.id);
       });
 
-      for (let i = 0; i < idList.length; i++) {
-        const id = idList[i];
+      for (const id of idList) {
         const group = await pool.query(
           "SELECT request FROM requests WHERE id = $1 AND request_time >  CURRENT_DATE - INTERVAL '1 months'",
           [id]
