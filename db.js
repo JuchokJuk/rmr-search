@@ -7,13 +7,13 @@ const pool = new Pool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   database: process.env.POSTGRES_DB,
-  // ssl: {
-  //   rejectUnauthorized: false,
-  // },
+  ssl: {
+    rejectUnauthorized: false,
+  },
   dialect: "postgres",
-  // dialectOptions: {
-  //   ssl: { require: true },
-  // },
+  dialectOptions: {
+    ssl: { require: true },
+  },
 });
 
 export default pool;
