@@ -24,16 +24,11 @@ class RequestController {
 
   async sendRequest(req, res) {
     try {
-      const request = req.body.request.trim()
-      if (request.length > 0) {
-        await pool.query("INSERT INTO requests (id, request) VALUES ($1, $2)", [
-          req.body.id,
-          req.body.request,
-        ]);
-        res.json({ message: "ok" });
-      } else {
-        res.json({ error: "you can not write empty string" });
-      }
+      await pool.query("INSERT INTO requests (id, request) VALUES ($1, $2)", [
+        req.body.id,
+        req.body.request,
+      ]);
+      res.json({ message: "ok" });
     } catch (e) {
       res.json({ error: e.message });
     }
